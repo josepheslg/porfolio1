@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Requin Marteau</title>
+    <style>
+        /* --- CONFIGURATION GÉNÉRALE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); /* Océan profond */
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden; /* Évite les barres de défilement si le requin dépasse un peu */
+            position: relative;
+        }
+
+        /* --- LE REQUIN (STYLES) --- */
+        #shark-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 100px;
+            pointer-events: none; /* Le clic passe à travers le requin */
+            z-index: 0; /* Derrière le contenu principal */
+            transition: all 4s ease-in-out; /* Mouvement fluide */
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+        }
+
+        /* Animation de nage (queue qui bouge) */
+        .shark-body {
+            fill: #90a4ae;
+        }
+        
+        .shark-tail {
+            transform-origin: center right;
+            animation: swim 0.8s infinite alternate ease-in-out;
+        }
+
+        @keyframes swim {
+            from { transform: rotate(10deg); }
+            to { transform: rotate(-10deg); }
+        }
+
+        /* --- CONTENU DU PORTFOLIO (GLASSMORPHISM) --- */
+        .container {
+            position: relative;
+            z-index: 10; /* Devant le requin */
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        header, section {
+            background: rgba(255, 255, 255, 0.1); /* Effet verre */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #4dd0e1;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(77, 208, 225, 0.5);
+        }
+
+        h2 {
+            color: #80deea;
+            border-bottom: 2px solid #4dd0e1;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #e0f7fa;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4dd0e1;
+            color: #006064;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="shark-container">
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+            <g transform="rotate(90 100 50)"> <path class="shark-body" d="M90,20 C70,40 70,120 90,160 L110,160 C130,120 130,40 110,20 Z" />
+                <path class="shark-body" d="M60,20 L140,20 L140,40 C140,50 120,50 110,40 L90,40 C80,50 60,50 60,40 Z" />
+                <path class="shark-body" d="M75,70 L40,100 L75,90 Z" />
+                <path class="shark-body" d="M125,70 L160,100 L125,90 Z" />
+                <path class="shark-body shark-tail" d="M95,155 L70,190 L100,180 L130,190 L105,155 Z" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Prénom Nom</h1>
+            <p>Développeur Web & Explorateur Digital</p>
+        </header>
+
+        <section id="about">
+            <h2>À propos</h2>
+            <p>
+                Bienvenue dans mon univers. Je suis un passionné de développement web créatif. 
+                J'aime plonger dans les profondeurs du code pour créer des expériences utilisateur fluides et immersives.
+            </p>
+            <p>
+                Actuellement disponible pour des projets freelance ou des collaborations à long terme.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>Mes Projets</h2>
+            <div class="project-grid">
+                <div class="card">
+                    <h3>Projet Alpha</h3>
+                    <p>Une application web progressive pour la gestion de tâches sous-marines.</p>
+                </div>
+                <div class="card">
+                    <h3>Site Vitrine DeepSea</h3>
+                    <p>Design UX/UI pour une agence de voyage spécialisée en plongée.</p>
+                </div>
+                <div class="card">
+                    <h3>Dashboard Atlantis</h3>
+                    <p>Visualisation de données complexes avec D3.js.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contactez-moi</h2>
+            <p>Prêt à plonger dans un nouveau projet ? Envoyez-moi un signal sonar.</p>
+            <a href="mailto:email@exemple.com" class="btn">Me contacter</a>
+        </section>
+    </div>
+
+    <script>
+        const shark = document.getElementById('shark-container');
+        
+        // Configuration du mouvement
+        let maxWidth = window.innerWidth - 200; // Largeur fenêtre moins largeur requin
+        let maxHeight = window.innerHeight - 100; // Hauteur fenêtre moins hauteur requin
+        
+        function moveShark() {
+            // Recalculer les dimensions au cas où la fenêtre change
+            maxWidth = window.innerWidth - 200;
+            maxHeight = window.innerHeight - 100;
+
+            // 1. Choisir une nouvelle position aléatoire
+            const newX = Math.floor(Math.random() * maxWidth);
+            const newY = Math.floor(Math.random() * maxHeight);
+
+            // 2. Calculer l'angle pour tourner le requin vers la destination
+            // On récupère la position actuelle
+            const currentX = shark.offsetLeft;
+            const currentY = shark.offsetTop;
+
+            const deltaX = newX - currentX;
+            const deltaY = newY - currentY;
+
+            // Calcul de l'angle en radians puis conversion en degrés
+            // On ajoute 90deg car notre SVG pointe vers le haut par défaut (ou on ajuste selon le dessin)
+            // Dans notre dessin SVG, la tête est vers le haut, donc on ajuste.
+            let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+            
+            // Ajustement pour que la tête soit devant (ajout de 90 degrés car le SVG est dessiné verticalement)
+            angle += 90;
+
+            // 3. Appliquer les styles
+            shark.style.transform = `rotate(${angle}deg)`;
+            shark.style.left = `${newX}px`;
+            shark.style.top = `${newY}px`;
+
+            // 4. Relancer la fonction après un délai aléatoire (entre 3 et 6 secondes)
+            const randomDelay = Math.floor(Math.random() * 3000) + 3000;
+            setTimeout(moveShark, randomDelay);
+        }
+
+        // Démarrer l'animation au chargement
+        window.onload = moveShark;
+
+        // Effet bonus : Le requin fuit la souris si on s'approche trop (optionnel)
+        document.addEventListener('mousemove', (e) => {
+            const sharkRect = shark.getBoundingClientRect();
+            const sharkX = sharkRect.left + sharkRect.width / 2;
+            const sharkY = sharkRect.top + sharkRect.height / 2;
+            
+            const dist = Math.hypot(e.clientX - sharkX, e.clientY - sharkY);
+
+            // Si la souris est à moins de 150px, on force un nouveau mouvement immédiat
+            if (dist < 150) {
+               // moveShark(); // Décommente pour rendre le requin "peureux"
+            }
+        });
+
+    </script>
+</body>
+</html>

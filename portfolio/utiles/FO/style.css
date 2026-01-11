@@ -1,0 +1,495 @@
+/* Variables de la charte graphique */
+:root {
+    --couleur-principale: #008C8C;
+    --couleur-secondaire: #E0F2F7;
+    --couleur-texte: #333333;
+    --couleur-texte-lien-nav: #333333; /* Peut être var(--couleur-texte) si toujours identique */
+    --couleur-texte-lien-nav-actif: var(--couleur-principale);
+    --couleur-bordure: #E0E0E0;
+    --couleur-fond-header: #FFFFFF;
+    --couleur-fond-footer: #F8F9FA;
+    --couleur-fond-body: #FFFFFF;
+    --couleur-texte-footer: #555555;
+    --couleur-icones-sociales: var(--couleur-principale);
+    --couleur-blanche: #FFFFFF;
+    --couleur-principale-hover: #007373;
+    --couleur-secondaire-hover-bg: #CDEBF1;
+    --couleur-secondaire-hover-text: var(--couleur-principale-hover); /* Ou #007373 directement */
+    --couleur-secondaire-hover-border: #C0E3EA;
+
+    --police-principale: 'Poppins', sans-serif;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+
+    --font-size-nav-lien: 0.95em;
+    --font-size-header-right-lien: 0.9em;
+    --font-size-corps-petit: 0.9em; /* Utilisé pour .footer-section ul li et .footer-bottom */
+    --font-size-titre-footer: 1.1em;
+    --font-size-icone-sociale: 1.5em;
+
+    --espacement-standard: 10px;
+    --espacement-moyen: 15px;
+    --espacement-double: 20px;
+    --espacement-triple: 30px;
+
+    --hauteur-header: 70px;
+    --logo-hauteur: 40px;
+    --container-largeur-defaut: 90%;
+    --container-largeur-max: 1200px;
+    --footer-section-largeur-min: 200px; /* Ajusté pour ne pas être écrasé par flex:1 */
+    --zone-contenu-hauteur-min: 300px;
+
+    --border-radius-bouton: 16px;
+    --bordure-standard-interface: 1px solid var(--couleur-bordure);
+    --bordure-bouton-primaire: 1px solid var(--couleur-principale);
+    --bordure-bouton-secondaire: 1px solid var(--couleur-secondaire);
+
+    --transition-couleur-rapide: color 0.2s ease-in-out;
+    --transition-bouton-standard: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Styles généraux du corps */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--police-principale);
+    color: var(--couleur-texte);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--couleur-fond-body);
+}
+
+/* Conteneur principal */
+.container {
+    width: var(--container-largeur-defaut);
+    max-width: var(--container-largeur-max);
+    margin: 0 auto;
+}
+
+/* Styles du Header */
+header {
+    background-color: var(--couleur-fond-header);
+    border-bottom: var(--bordure-standard-interface);
+    height: var(--hauteur-header);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--espacement-double);
+    width: 100%;
+    box-sizing: border-box;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0; 
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+header.header-scrolled {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: var(--logo-hauteur);
+    margin-right: var(--espacement-triple);
+}
+
+nav.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav.main-nav ul li {
+    margin-right: var(--espacement-double);
+}
+
+nav.main-nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav.main-nav ul li a {
+    text-decoration: none;
+    color: var(--couleur-texte-lien-nav);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-nav-lien);
+    padding: var(--espacement-standard) 0;
+    transition: var(--transition-couleur-rapide);
+}
+
+nav.main-nav ul li a.active {
+    color: var(--couleur-texte-lien-nav-actif);
+    font-weight: var(--font-weight-semibold);
+}
+
+nav.main-nav ul li a:hover {
+    color: var(--couleur-texte-lien-nav-actif);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right a { /* S'applique aux liens directs, pas aux boutons dans .mobile-icons */
+    text-decoration: none;
+    margin-left: var(--espacement-moyen);
+    font-size: var(--font-size-header-right-lien);
+    font-weight: var(--font-weight-medium);
+}
+
+.pro-link {
+    color: var(--couleur-texte);
+    padding: calc(var(--espacement-standard) / 2) var(--espacement-standard);
+}
+
+.pro-link:hover {
+    color: var(--couleur-principale);
+}
+
+.btn {
+    padding: var(--espacement-standard) var(--espacement-double);
+    border-radius: var(--border-radius-bouton);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+    transition: var(--transition-bouton-standard);
+}
+
+.btn-primary {
+    background-color: var(--couleur-principale);
+    color: var(--couleur-blanche);
+    border: var(--bordure-bouton-primaire);
+}
+
+.btn-primary:hover {
+    background-color: var(--couleur-principale-hover);
+    border-color: var(--couleur-principale-hover);
+    color: var(--couleur-blanche);
+}
+
+.btn-secondary {
+    background-color: var(--couleur-secondaire);
+    color: var(--couleur-principale);
+    border: var(--bordure-bouton-secondaire);
+}
+
+.btn-secondary:hover {
+    background-color: var(--couleur-secondaire-hover-bg);
+    color: var(--couleur-secondaire-hover-text);
+    border-color: var(--couleur-secondaire-hover-border);
+}
+
+/* Styles pour la zone de contenu principal */
+main {
+    flex-grow: 1;
+    padding: var(--espacement-double) 0;
+}
+
+.content-area {
+    min-height: var(--zone-contenu-hauteur-min);
+    padding: var(--espacement-double) var(--espacement-standard);
+}
+
+/* Styles du Footer */
+footer {
+    background-color: var(--couleur-fond-footer);
+    color: var(--couleur-texte-footer);
+    padding-top: var(--espacement-triple);
+    padding-bottom: var(--espacement-standard);
+    border-top: var(--bordure-standard-interface);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--espacement-double);
+    padding-bottom: var(--espacement-double);
+    max-width: var(--container-largeur-max);
+    margin: 0 auto;
+    padding-left: var(--espacement-double);
+    padding-right: var(--espacement-double);
+}
+
+.footer-section {
+    flex: 1;
+    min-width: var(--footer-section-largeur-min);
+    margin-bottom: var(--espacement-double);
+}
+
+.footer-logo {
+    height: var(--logo-hauteur);
+    margin-bottom: var(--espacement-standard);
+}
+
+.social-media .social-icons a {
+    color: var(--couleur-icones-sociales);
+    margin-right: var(--espacement-standard);
+    font-size: var(--font-size-icone-sociale);
+    text-decoration: none;
+}
+
+.social-media .social-icons a:hover {
+    color: var(--couleur-principale-hover);
+}
+
+.footer-section h3 {
+    font-size: var(--font-size-titre-footer);
+    color: var(--couleur-texte);
+    margin-top: 0;
+    margin-bottom: var(--espacement-moyen);
+    font-weight: var(--font-weight-semibold);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: calc(var(--espacement-standard) * 0.8);
+    font-size: var(--font-size-corps-petit);
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: var(--couleur-texte-footer);
+    font-weight: var(--font-weight-normal);
+}
+
+.footer-section ul li a:hover {
+    color: var(--couleur-principale);
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--espacement-double);
+    border-top: var(--bordure-standard-interface);
+    font-size: var(--font-size-corps-petit);
+    max-width: var(--container-largeur-max);
+    margin: 0 auto;
+    padding-left: var(--espacement-double);
+    padding-right: var(--espacement-double);
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 992px) {
+    .header-container {
+        /* flex-direction: column; */ /* Commenté car le header mobile sera en row */
+        /* align-items: flex-start; */ /* Commenté */
+    }
+    header {
+      /* height: auto; */ /* Maintenir hauteur fixe pour mobile ou ajuster spécifiquement */
+        padding: var(--espacement-moyen) var(--espacement-double);
+    }
+    .header-left {
+        /* width: 100%; */ /* Ne doit pas prendre toute la largeur sur mobile */
+        /* margin-bottom: var(--espacement-moyen); */ /* Non nécessaire pour mobile row layout */
+    }
+    nav.main-nav {
+      /* margin-top: var(--espacement-standard); */ /* Sera caché sur mobile */
+    }
+    .header-right {
+        /* width: 100%; */ /* Non nécessaire pour mobile */
+        /* justify-content: flex-start; */ /* Sera flex-end sur mobile */
+        /* flex-wrap: wrap; */ /* Non nécessaire pour les icônes mobiles */
+    }
+    .header-right a { /* Cela s'appliquait aux liens desktop */
+        /* margin-left: 0; */
+        /* margin-right: var(--espacement-moyen); */
+        /* margin-bottom: var(--espacement-standard); */
+    }
+    .pro-link { 
+        /* padding: var(--espacement-standard) 0; */
+    }
+
+    .footer-content, .footer-bottom {
+        padding-left: var(--espacement-standard);
+        padding-right: var(--espacement-standard);
+    }
+}
+
+
+/* NOUVEAUX STYLES POUR LE HEADER MOBILE ET MENU */
+
+.desktop-only { /* Sera utilisé pour cacher les éléments desktop sur mobile */
+    /* display: none; est appliqué dans la media query mobile */
+}
+
+.mobile-icons {
+    display: none; /* Caché par défaut, affiché via media query */
+    align-items: center;
+}
+
+.mobile-icon {
+    color: var(--couleur-texte);
+    font-size: 1.5em; /* Taille des icônes Home, User, Bars */
+    margin-left: var(--espacement-moyen); /* Espace entre les icônes */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px; /* Un peu de padding pour faciliter le clic */
+    text-decoration: none; /* Pour les liens icônes */
+}
+
+.mobile-icon:first-child {
+    margin-left: 0; /* Pas de marge à gauche pour la première icône */
+}
+
+.mobile-icon:hover {
+    color: var(--couleur-principale);
+}
+
+.hamburger-menu {
+    /* Hérite de .mobile-icon, styles spécifiques si besoin */
+}
+
+.mobile-nav-links {
+    display: none; /* Caché par défaut, JS basculera 'active' */
+    background-color: var(--couleur-fond-header);
+    position: absolute; /* Positionné par rapport au header */
+    top: var(--hauteur-header); /* Juste en dessous du header */
+    left: 0;
+    right: 0; /* S'étend sur toute la largeur */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombre portée plus prononcée */
+    z-index: 999; /* En dessous du header sticky, mais au-dessus du contenu de la page */
+    border-top: var(--bordure-standard-interface);
+}
+
+.mobile-nav-links.active {
+    display: block; /* Affiche le menu quand la classe 'active' est ajoutée par JS */
+}
+
+.mobile-nav-links ul {
+    list-style: none;
+    padding: 0; /* Pas de padding par défaut pour ul */
+    margin: 0;
+}
+
+.mobile-nav-links ul li a {
+    display: block; /* Pour que le lien prenne toute la largeur */
+    padding: var(--espacement-moyen) var(--espacement-double); /* Espacement interne des liens */
+    text-decoration: none;
+    color: var(--couleur-texte-lien-nav);
+    font-weight: var(--font-weight-medium);
+    border-bottom: 1px solid var(--couleur-bordure); /* Séparateur entre les liens */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-nav-links ul li:last-child a {
+    border-bottom: none; /* Pas de bordure pour le dernier élément */
+}
+
+.mobile-nav-links ul li a:hover,
+.mobile-nav-links ul li a:focus { /* Amélioration accessibilité */
+    background-color: var(--couleur-secondaire-hover-bg);
+    color: var(--couleur-principale-hover);
+}
+
+
+/* Styles pour écrans mobiles - AJUSTEMENT DU BREAKPOINT EXISTANT */
+@media (max-width: 768px) { /* Ce breakpoint existait déjà, on ajoute/modifie des règles */
+    .container {
+        width: 95%;
+    }
+
+    /* Modifications spécifiques au Header pour mobile */
+    header {
+        padding: 0 var(--espacement-moyen); /* Padding plus petit pour mobile */
+    }
+    
+    .header-container {
+        flex-direction: row; /* Assure que c'est bien en ligne */
+        justify-content: space-between; /* Logo à gauche, icônes à droite */
+        align-items: center; /* Centrage vertical */
+    }
+
+    .header-left {
+        width: auto; /* S'adapte au logo */
+        margin-bottom: 0; /* Annule le margin-bottom du breakpoint 992px */
+    }
+
+    .logo {
+        margin-right: 0; /* Pas de marge à droite si le nav principal est caché */
+        height: calc(var(--logo-hauteur) * 0.9); /* Optionnel: logo légèrement plus petit */
+    }
+    
+    nav.main-nav { /* Le menu de navigation principal desktop */
+        display: none !important; /* Caché sur mobile, !important pour surcharger */
+    }
+
+    .header-right {
+        width: auto; /* S'adapte aux icônes */
+        justify-content: flex-end; /* Aligne les icônes à droite */
+        margin-left: auto; /* Pousse le groupe d'icônes vers la droite */
+    }
+    
+    .desktop-only { /* Cache les éléments spécifiques au desktop */
+        display: none !important;
+    }
+
+    .mobile-icons { /* Affiche le conteneur des icônes mobiles */
+        display: flex; 
+    }
+    
+    /* Styles pour les boutons dans le header-right qui étaient pour desktop */
+    /* Les styles .header-right .btn et .header-right .pro-link sont déjà modifiés par .desktop-only */
+    /* Mais on peut vouloir les réinitialiser s'ils avaient des largeurs spécifiques */
+     .header-right .btn {
+        /* width: calc(50% - (var(--espacement-moyen) / 2) ); */ /* Annulé car desktop-only */
+        /* box-sizing: border-box; */
+    }
+
+     .header-right .pro-link {
+        /* width: 100%;  */ /* Annulé */
+        /* text-align: left; */
+        /* margin-bottom: var(--espacement-moyen); */
+        /* margin-right: 0;  */
+    }
+
+    /* Footer adjustments from existing rules (vérifier si toujours pertinents) */
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: 100%;
+        margin-bottom: var(--espacement-double);
+    }
+
+    .social-media .social-icons {
+        justify-content: center;
+        display: flex;
+    }
+}
+
+
+
+

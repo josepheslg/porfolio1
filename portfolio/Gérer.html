@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets - Portfolio</title>
+    <style>
+        /* --- VARIABLES & BASE --- */
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #ffffff;
+            --accent-color: #00d2ff;
+            --secondary-color: #1a1a1a;
+            --code-bg: #2d2d2d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 15, 0.8);
+        }
+        .logo { font-size: 1.2rem; font-weight: bold; color: var(--accent-color); }
+        .back-link:hover { color: var(--accent-color); }
+
+        /* --- PAGE HERO (Titre de la section globale) --- */
+        .page-hero {
+            height: 45vh; /* Légèrement agrandi pour accueillir le label */
+            background: linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,1)), url('https://via.placeholder.com/1200x600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px; /* Pour la navbar fixe */
+        }
+
+        /* NOUVEAU : Style pour le label de la compétence */
+        .skill-label {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(0, 210, 255, 0.1);
+            padding: 8px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--accent-color);
+            font-size: 0.9rem;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.1);
+        }
+
+        .page-hero h1 { font-size: 3.5rem; margin-bottom: 10px; line-height: 1.2; }
+        .page-hero p { color: #ccc; font-size: 1.2rem; max-width: 600px; }
+
+        /* --- STRUCTURE PROJET --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Le bloc qui contient UN projet complet */
+        .project-block {
+            position: relative; /* Important pour le sticky sidebar */
+            padding: 80px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .project-block:last-child { border-bottom: none; }
+
+        /* En-tête spécifique à un projet */
+        .project-header { margin-bottom: 40px; }
+        .project-header h2 { font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
+        .tags { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .tag { 
+            background: rgba(0, 210, 255, 0.1); 
+            border: 1px solid var(--accent-color); 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            font-size: 0.85rem; 
+            color: var(--accent-color);
+        }
+
+        /* Layout Grid */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Contenu Principal */
+        h3 { color: var(--accent-color); margin: 30px 0 15px 0; font-size: 1.5rem; }
+        h3:first-of-type { margin-top: 0; }
+        p { margin-bottom: 20px; color: #ccc; text-align: justify; }
+
+        /* Images */
+        .project-images { display: grid; gap: 20px; margin: 30px 0; }
+        .project-images img { width: 100%; border-radius: 10px; border: 1px solid #333; transition: transform 0.3s; }
+        .project-images img:hover { transform: scale(1.01); }
+
+        /* Code */
+        .code-container {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            border-left: 4px solid var(--accent-color);
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        pre { font-family: 'Consolas', monospace; color: #e0e0e0; }
+
+        /* --- SIDEBAR --- */
+        /* La sidebar est sticky par rapport à son .project-block parent */
+        .sidebar-card { 
+            background: var(--secondary-color); 
+            padding: 30px; 
+            border-radius: 15px; 
+            position: sticky; 
+            top: 100px; /* Distance du haut de l'écran */
+            border: 1px solid #333;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-color);
+            color: #000;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3); }
+        .btn-outline { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); }
+        .btn-outline:hover { background: rgba(0, 210, 255, 0.1); }
+
+        /* --- MOBILE --- */
+        @media (max-width: 900px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .sidebar-card { position: static; margin-top: 30px; }
+            .project-block { padding: 50px 0; }
+            .page-hero h1 { font-size: 2rem; }
+            nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MON PORTFOLIO</div>
+        <a href="./home/index.html" class="back-link">← Retour aux compétences</a>
+    </nav>
+
+    <header class="page-hero">
+        <div class="skill-label">Compétence : Gérer 💾</div>
+        
+        <h1>Mes Réalisations</h1>
+        <p>Découvrez une sélection de mes projets techniques et créatifs.</p>
+    </header>
+
+    <div class="container">
+
+
+        <article class="project-block" id="projet-2">
+            <div class="project-header">
+                <h2>Dashboard Analytique</h2>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">streamlit</span>
+                    <span class="tag">Régression linéaire</span>
+                </div>
+            </div>
+
+            <div class="grid-layout">
+                <main>
+                    <h3>🎯 Le Défi</h3>
+                    <p>
+L'industrie du cinéma génère des milliards de dollars, mais le succès d'un film reste souvent imprévisible. Notre objectif était de récupérer, nettoyer et analyser un vaste jeu de données issu d'IMDb (Internet Movie Database) pour tenter de rationaliser ce succès.
+
+Le défi technique était double :
+
+    Traitement de la donnée : Transformer des données brutes et hétérogènes en un dataset exploitable (nettoyage, gestion des valeurs manquantes).
+
+    Modélisation : Créer un algorithme capable de prédire la note moyenne d'un film avant sa sortie, en se basant uniquement sur des critères objectifs (Budget, Durée, Genre).                    </p>
+                    
+                    <div class="project-images">
+                        <img src="image/unnamed.jpg" alt="Dashboard">
+                    </div>
+
+                    <h3>Solution Technique</h3>
+                    <p>
+Nous avons mis en place un pipeline de données complet en Python :
+
+    Data Engineering & Nettoyage : Utilisation de Pandas et NumPy pour nettoyer le dataset (suppression des doublons, conversion des devises pour le budget, encodage des genres cinématographiques via One-Hot Encoding).
+
+    Analyse Exploratoire (EDA) : Création de visualisations avec Matplotlib/Seaborn pour identifier les corrélations (ex: impact du budget sur la note, tendances par décennie).
+
+    Machine Learning : Entraînement d'un modèle de Régression Linéaire Multiple (via Scikit-Learn). Nous avons séparé les données (Train/Test split) pour évaluer la précision du modèle et éviter le sur-apprentissage.
+
+    Restitution Web : Développement d'une interface web interactive (Dashboard) permettant à un utilisateur de visualiser les statistiques globales et d'utiliser notre modèle de prédiction en temps réel via un formulaire.
+                    </p>
+                </main>
+
+                <aside>
+                    <div class="sidebar-card">
+                        <h4 style="color:white; margin-bottom:15px;">Infos Projet</h4>
+                        <a href="https://github.com/josepheslg/Portfolio/blob/main/Projet_BDD.tar.gz" class="btn">Accéder au Projet</a>
+                        <a href="utiles/Note Explicative.pdf" class="btn btn-outline">Note Explicative</a>
+                        
+                        <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
+                        
+                        <ul style="list-style: none; color: #888; font-size: 0.9rem;">
+                            <li>📅 Année : 2025</li>
+                            <li>⏱️ Durée : 6 semaines</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </article>
+
+        <article class="project-block" id="projet-1">
+            <div class="project-header">
+                <h2>Site web d'offre touristique</h2>
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">Figma</span>
+                    <span class="tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="grid-layout">
+                <main>
+                    <h3>Le Défi</h3>
+                    <p>
+                        L'objectif était de concevoir et développer, en équipe de six personnes, une plateforme web complète de promotion d'activités touristiques en région PACA.
+
+La complexité du projet ne résidait pas seulement dans le code, mais dans le contexte : nous étions en simulation réelle d'entreprise. Nous devions partir d'une page blanche pour livrer un produit fini et fonctionnel, en gérant toutes les étapes du cycle de vie d'un projet web (Design, BDD, Back-end, Front-end, Déploiement).
+
+                    
+                    <div class="project-images">
+                        <img src="image/image.webp" alt="image projet">
+                        <p>Le challenge principal était d'assurer la cohésion technique et organisationnelle d'une grande équipe, tout en respectant des délais stricts et une méthodologie imposée.</p>
+                        <img src="image/image3.png" alt="image projet">
+                    </div>
+
+                    <h3>Solution Technique</h3>
+                    <p>
+Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigoureuse, pilotée par la méthode Agile Scrum.
+
+    Gestion de projet (Mon rôle de Scrum Master) : J'ai mis en place l'organisation sur Jira pour découper le projet en Sprints. J'ai animé les rituels (Dailies, Retrospectives) pour fluidifier la communication, répartir la charge de travail et lever les bloquants techniques de mes collaborateurs.
+
+    Conception & Design : Nous avons réalisé des maquettes haute-fidélité sur Figma et conçu une base de données relationnelle complexe (MCD/MLD) pour gérer les utilisateurs, les professionnels et les annonces.
+
+    Développement : Nous avons bâti le site en PHP natif (sans framework) avec une architecture MVC (Modèle-Vue-Contrôleur) pour garantir un code propre et maintenable.
+
+    Fonctionnalités livrées : Un Front-Office pour les visiteurs (recherche avancée, favoris, notation) et un Back-Office complet pour les professionnels (CRUD des annonces, gestion de profil).
+                    </p>
+
+                    <div class="code-container">
+<pre><code>            // Add click listener for favorite buttons (basic toggle example)
+            const favoriteButtons = document.querySelectorAll('.favorite-btn');
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    button.classList.toggle('active');
+                });
+            });
+</code></pre>
+                    </div>
+                </main>
+
+                <aside>
+                    <div class="sidebar-card">
+                        <h4 style="color:white; margin-bottom:15px;">Infos Projet</h4>
+                        <a href="utiles/tregor.html" class="btn">Voir le Site</a>
+                        <a href="https://github.com/tbtdbs2/Xx_TregorIndustries_xX/tree/develop/html" class="btn btn-outline">Code Source</a>
+                        
+                        <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
+                        
+                        <ul style="list-style: none; color: #888; font-size: 0.9rem;">
+                            <li>📅 Année : 2025</li>
+                            <li>⏱️ Durée : 3 mois</li>
+                            <li>👥 Rôle : Scrum Master / Fullstack Dev</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </article>
+
+
+    </div>
+
+    <footer style="text-align: center; padding: 50px; border-top: 1px solid #333; color: #666; margin-top: 50px;">
+        © 2026 Joseph - Créé avec passion.
+    </footer>
+
+</body>
+</html>
