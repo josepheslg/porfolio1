@@ -90,6 +90,7 @@
             color: #ccc;
         }
 
+        /* --- BOUTONS (CTA) --- */
         .btn {
             padding: 12px 30px;
             background: var(--accent-color);
@@ -97,8 +98,34 @@
             font-weight: bold;
             border-radius: 30px;
             display: inline-block;
+            transition: 0.3s;
         }
         .btn:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--accent-color); }
+
+        .cta-group {
+            display: flex;
+            gap: 20px; /* Espace entre les boutons */
+            margin-top: 30px;
+        }
+
+        /* Style pour le bouton CV (Bordure uniquement) */
+        .btn-outline {
+            padding: 12px 30px;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: bold;
+            border-radius: 30px;
+            display: inline-block;
+            background: transparent;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
 
         /* --- AUTRES SECTIONS --- */
         section { 
@@ -111,10 +138,9 @@
         
         .section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
 
-        /* --- SKILLS GRID (CORRIGÉ) --- */
+        /* --- SKILLS GRID --- */
         .skills-grid {
             display: grid;
-            /* FORCE 3 COLONNES EXACTEMENT */
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             width: 100%;
@@ -126,7 +152,6 @@
             justify-content: flex-start;
             align-items: center;
             height: 100%;
-            
             text-decoration: none;
             background: var(--secondary-color);
             padding: 30px;
@@ -163,7 +188,35 @@
             flex-grow: 1; 
         }
 
-        /* CONTACT */
+        /* --- A PROPOS (TIMELINE) --- */
+        .a-propos-content {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        .timeline {
+            flex: 1;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 20px;
+        }
+        .timeline-item { margin-bottom: 30px; position: relative; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        .timeline-item h3 { color: var(--accent-color); font-size: 1.1rem; margin-bottom: 5px; }
+        .timeline-item h4 { color: #fff; margin-bottom: 5px; }
+        .presentation-text { flex: 2; line-height: 1.8; color: #ccc; }
+        .presentation-text p { margin-bottom: 15px; }
+        .presentation-text strong { color: var(--accent-color); }
+
+        /* --- CONTACT --- */
         form {
             max-width: 600px;
             margin: 0 auto;
@@ -181,27 +234,26 @@
             border-radius: 5px;
         }
         
-        /* --- RESPONSIVE / MEDIA QUERIES --- */
-        
-        /* Tablettes et petits écrans (ex: iPad, Laptop moyen) */
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .skills-grid {
-                /* Passe à 2 colonnes (3 lignes de 2) */
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
             h1 { font-size: 3rem; }
+            .a-propos-content { flex-direction: column; }
         }
 
-        /* Mobile */
         @media (max-width: 768px) {
-            .skills-grid {
-                /* Passe à 1 colonne (empilé) */
-                grid-template-columns: 1fr;
-            }
+            .skills-grid { grid-template-columns: 1fr; }
             h1 { font-size: 2.5rem; }
             #home { padding: 20px; align-items: flex-end; padding-bottom: 100px; }
             .nav-links { display: none; }
             section { padding: 80px 5%; }
+            
+            /* Stack les boutons sur mobile */
+            .cta-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -213,6 +265,7 @@
             <li><a href="#home">Accueil</a></li>
             <li><a href="#about">À Propos</a></li>
             <li><a href="#skills">Compétences</a></li>
+            <li><a href="../utiles/CNAF_CV.pdf" target="_blank" style="color: var(--accent-color); font-weight: bold;">Mon CV</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -223,20 +276,53 @@
         <div class="hero-content">
             <h1>Bonjour,<br>Je suis <span>Joseph</span></h1>
             <p class="subtitle">Développeur et blagueur endurci.</p>
-            <a href="#skills" class="btn">Découvrir mon expertise</a>
+            
+            <div class="cta-group">
+                <a href="#skills" class="btn">Découvrir mon expertise</a>
+                <a href="../utiles/CNAF_CV.pdf" target="_blank" class="btn-outline">📄 Voir mon CV</a>
+            </div>
         </div>
     </div>
 
-    <section id="about">
-        <h2 class="section-title">À Propos</h2>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.6;">
-            <p>
-            Actuellement en 3ème année de BUT Informatique à l’IUT de Lannion, j'ai choisi de spécialiser mon parcours via l'alternance. J'occupe aujourd'hui le poste d'Apprenti Chef de Projet Informatique au sein du Laboratoire Vétérinaire de Vendée.
-            Cette expérience me permet de combiner mon solide bagage technique (Python, Java, Web, SQL) avec une vision stratégique des besoins de l'entreprise. Au quotidien, je ne me contente pas de coder : je pilote des solutions, j'analyse les besoins métiers et je veille à la transformation numérique du laboratoire.
-            Ma force réside dans cette double compétence : je comprends les contraintes des développeurs tout en parlant le langage des utilisateurs. Rigueur, méthode et écoute sont mes maîtres-mots pour mener à bien des projets complexes.     
-            </p>
+<section id="about">
+    <div class="container">
+        <h2 class="section-title">À propos de moi</h2>
+
+        <div class="a-propos-content">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Futur (Sept. 2026)</h3>
+                    <h4>Master MIAGE</h4>
+                    <p>ISTIC - Rennes</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Juillet 2024 - Aujourd'hui</h3>
+                    <h4>Apprenti Chef de Projet informatiques</h4>
+                    <p>Laboratoire de Vendée</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Sept. 2023 - 2026</h3>
+                    <h4>BUT Informatique</h4>
+                    <p>IUT Lannion</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>2023</h3>
+                    <h4>Baccalauréat Général</h4>
+                    <p>Spé. Math & NSI (Mention Bien)</p>
+                </div>
+            </div>
+
+            <div class="presentation-text">
+                <p>
+Actuellement en 3ème année de BUT Informatique à l’IUT de Lannion, j'ai choisi de spécialiser mon parcours via l'alternance. J'occupe aujourd'hui le poste d'Apprenti Chef de Projet Informatique au sein du Laboratoire Vétérinaire de Vendée. Cette expérience me permet de combiner mon solide bagage technique (Python, Java, Web, SQL) avec une vision stratégique des besoins de l'entreprise. Au quotidien, je ne me contente pas de coder : je pilote des solutions, j'analyse les besoins métiers et je veille à la transformation numérique du laboratoire. Ma force réside dans cette double compétence : je comprends les contraintes des développeurs tout en parlant le langage des utilisateurs. Rigueur, méthode et écoute sont mes maîtres-mots pour mener à bien des projets complexes. 
+                </p>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="skills">
         <h2 class="section-title">Mes Compétences</h2>
