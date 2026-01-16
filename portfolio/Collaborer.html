@@ -44,7 +44,7 @@
 
         /* --- PAGE HERO (Titre de la section globale) --- */
         .page-hero {
-            height: 45vh; /* Légèrement agrandi pour accueillir le label */
+            height: 55vh; /* Agrandissement pour le texte explicatif */
             background: linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,1)), url('https://via.placeholder.com/1200x600');
             background-size: cover;
             background-position: center;
@@ -158,6 +158,38 @@
         .btn-outline { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); }
         .btn-outline:hover { background: rgba(0, 210, 255, 0.1); }
 
+        /* --- AJOUTS CONTEXTE --- */
+        .competency-def {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 25px;
+            margin: 25px auto 0 auto;
+            max-width: 700px;
+            border-radius: 0 10px 10px 0;
+            text-align: left;
+            font-size: 1rem;
+            color: #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .relevance-box {
+            background: #252525;
+            border: 1px dashed var(--accent-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .relevance-box h5 {
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         /* --- MOBILE --- */
         @media (max-width: 900px) {
             .grid-layout { grid-template-columns: 1fr; }
@@ -180,6 +212,11 @@
         
         <h1>Mes Réalisations</h1>
         <p>Découvrez une sélection de mes projets techniques et créatifs.</p>
+
+        <div class="competency-def">
+            <strong>💡 En quoi consiste cette compétence ?</strong><br>
+            Il s'agit de s'intégrer efficacement dans une équipe informatique, de communiquer clairement avec les parties prenantes et de mettre ses compétences au service du collectif pour atteindre un objectif commun.
+        </div>
     </header>
 
     <div class="container">
@@ -233,6 +270,11 @@
                     <div class="sidebar-card">
                         <h4 style="color:white; margin-bottom:15px;">Infos Projet</h4>
                         
+                        <div class="relevance-box">
+                            <h5>🎯 Pourquoi ce projet ?</h5>
+                            <p>Ce projet illustre la capacité à gérer la dynamique de groupe et la communication interne hors contexte technique, prouvant mon aptitude à créer du lien et organiser des événements collectifs.</p>
+                        </div>
+                        
                         <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
                         
                         <ul style="list-style: none; color: #888; font-size: 0.9rem;">
@@ -244,6 +286,7 @@
                 </aside>
             </div>
         </article>
+        
         <article class="project-block" id="projet-1">
             <div class="project-header">
                 <h2>Site web d'offre touristique</h2>
@@ -261,9 +304,8 @@
                     <h3>Le Défi</h3>
                     <p>
                         L'objectif était de concevoir et développer, en équipe de six personnes, une plateforme web complète de promotion d'activités touristiques en région PACA.
-
-La complexité du projet ne résidait pas seulement dans le code, mais dans le contexte : nous étions en simulation réelle d'entreprise. Nous devions partir d'une page blanche pour livrer un produit fini et fonctionnel, en gérant toutes les étapes du cycle de vie d'un projet web (Design, BDD, Back-end, Front-end, Déploiement).
-
+                        La complexité du projet ne résidait pas seulement dans le code, mais dans le contexte : nous étions en simulation réelle d'entreprise. Nous devions partir d'une page blanche pour livrer un produit fini et fonctionnel, en gérant toutes les étapes du cycle de vie d'un projet web (Design, BDD, Back-end, Front-end, Déploiement).
+                    </p>
                     
                     <div class="project-images">
                         <img src="image/image.webp" alt="image projet">
@@ -273,15 +315,15 @@ La complexité du projet ne résidait pas seulement dans le code, mais dans le c
 
                     <h3>Solution Technique</h3>
                     <p>
-Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigoureuse, pilotée par la méthode Agile Scrum.
+                        Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigoureuse, pilotée par la méthode Agile Scrum.
 
-    Gestion de projet (Mon rôle de Scrum Master) : J'ai mis en place l'organisation sur Jira pour découper le projet en Sprints. J'ai animé les rituels (Dailies, Retrospectives) pour fluidifier la communication, répartir la charge de travail et lever les bloquants techniques de mes collaborateurs.
+                        Gestion de projet (Mon rôle de Scrum Master) : J'ai mis en place l'organisation sur Jira pour découper le projet en Sprints. J'ai animé les rituels (Dailies, Retrospectives) pour fluidifier la communication, répartir la charge de travail et lever les bloquants techniques de mes collaborateurs.
 
-    Conception & Design : Nous avons réalisé des maquettes haute-fidélité sur Figma et conçu une base de données relationnelle complexe (MCD/MLD) pour gérer les utilisateurs, les professionnels et les annonces.
+                        Conception & Design : Nous avons réalisé des maquettes haute-fidélité sur Figma et conçu une base de données relationnelle complexe (MCD/MLD) pour gérer les utilisateurs, les professionnels et les annonces.
 
-    Développement : Nous avons bâti le site en PHP natif (sans framework) avec une architecture MVC (Modèle-Vue-Contrôleur) pour garantir un code propre et maintenable.
+                        Développement : Nous avons bâti le site en PHP natif (sans framework) avec une architecture MVC (Modèle-Vue-Contrôleur) pour garantir un code propre et maintenable.
 
-    Fonctionnalités livrées : Un Front-Office pour les visiteurs (recherche avancée, favoris, notation) et un Back-Office complet pour les professionnels (CRUD des annonces, gestion de profil).
+                        Fonctionnalités livrées : Un Front-Office pour les visiteurs (recherche avancée, favoris, notation) et un Back-Office complet pour les professionnels (CRUD des annonces, gestion de profil).
                     </p>
 
                     <div class="code-container">
@@ -302,6 +344,11 @@ Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigour
                         <a href="utiles/tregor.html" class="btn">Voir le Site</a>
                         <a href="https://github.com/tbtdbs2/Xx_TregorIndustries_xX/tree/develop/html" class="btn btn-outline">Code Source</a>
                         
+                        <div class="relevance-box">
+                            <h5>🎯 Pourquoi ce projet ?</h5>
+                            <p>Réalisé à 6 personnes, ce projet démontre ma capacité à travailler sur un dépôt Git partagé, à résoudre des conflits de code et à harmoniser mes tâches avec celles des autres développeurs.</p>
+                        </div>
+
                         <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
                         
                         <ul style="list-style: none; color: #888; font-size: 0.9rem;">

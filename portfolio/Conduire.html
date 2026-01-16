@@ -44,7 +44,7 @@
 
         /* --- PAGE HERO (Titre de la section globale) --- */
         .page-hero {
-            height: 45vh; /* Légèrement agrandi pour accueillir le label */
+            height: 55vh; 
             background: linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,1)), url('https://via.placeholder.com/1200x600');
             background-size: cover;
             background-position: center;
@@ -158,6 +158,38 @@
         .btn-outline { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); }
         .btn-outline:hover { background: rgba(0, 210, 255, 0.1); }
 
+        /* --- AJOUTS CONTEXTE --- */
+        .competency-def {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 25px;
+            margin: 25px auto 0 auto;
+            max-width: 700px;
+            border-radius: 0 10px 10px 0;
+            text-align: left;
+            font-size: 1rem;
+            color: #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .relevance-box {
+            background: #252525;
+            border: 1px dashed var(--accent-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .relevance-box h5 {
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         /* --- MOBILE --- */
         @media (max-width: 900px) {
             .grid-layout { grid-template-columns: 1fr; }
@@ -180,10 +212,15 @@
         
         <h1>Mes Réalisations</h1>
         <p>Découvrez une sélection de mes projets techniques et créatifs.</p>
+
+        <div class="competency-def">
+            <strong>💡 En quoi consiste cette compétence ?</strong><br>
+            Elle couvre la gestion de projet informatique : identification des besoins (Cahier des charges), planification (Gantt, Agile) et pilotage de l'avancement pour respecter les délais.
+        </div>
     </header>
 
     <div class="container">
-                <article class="project-block" id="projet-1">
+        <article class="project-block" id="projet-1">
             <div class="project-header">
                 <h2>Application de gestion de salle</h2>
                 <div class="tags">
@@ -196,9 +233,10 @@
                 <main>
                     <h3>🎯 Le Défi</h3>
                     <p>
-Ce projet de première année de BUT avait pour objectif de simuler une relation client/prestataire réelle. La demande consistait à informatiser la gestion d'une salle des fêtes (réservations, planning, gestion des équipements).
+                        Ce projet de première année de BUT avait pour objectif de simuler une relation client/prestataire réelle. La demande consistait à informatiser la gestion d'une salle des fêtes (réservations, planning, gestion des équipements).
 
-La particularité de ce projet résidait dans son approche : l'ingénierie du besoin était aussi importante que le développement technique. Nous ne devions pas simplement "coder une solution", mais "comprendre le problème".                    </p>
+                        La particularité de ce projet résidait dans son approche : l'ingénierie du besoin était aussi importante que le développement technique. Nous ne devions pas simplement "coder une solution", mais "comprendre le problème".
+                    </p>
                     
                     <div class="project-images">
                         <img src="image/netbeans03.png" alt="Interface 3D">
@@ -206,25 +244,24 @@ La particularité de ce projet résidait dans son approche : l'ingénierie du be
                     <h3>📅 Méthodologie & Gestion de Projet</h3>
                     <p>Avant d'écrire la première ligne de code, notre équipe a suivi un processus rigoureux de formalisation :
 
-    Recueil des besoins : Interview du client fictif pour identifier les contraintes (capacité de la salle, tarifs, conflits de dates).
+                        Recueil des besoins : Interview du client fictif pour identifier les contraintes (capacité de la salle, tarifs, conflits de dates).
 
-    Rédaction du Cahier des Charges : Formalisation des fonctionnalités attendues et des contraintes techniques.
+                        Rédaction du Cahier des Charges : Formalisation des fonctionnalités attendues et des contraintes techniques.
 
-    Planification (GANTT) : Découpage du projet en tâches, estimation des délais et répartition des rôles via un diagramme de Gantt pour assurer le respect de la "Deadline".
+                        Planification (GANTT) : Découpage du projet en tâches, estimation des délais et répartition des rôles via un diagramme de Gantt pour assurer le respect de la "Deadline".
 
-    Organisation : Utilisation d'un système de tickets pour suivre l'avancement des tâches (To Do / Doing / Done) et création de l'organigramme de l'équipe.</p>
+                        Organisation : Utilisation d'un système de tickets pour suivre l'avancement des tâches (To Do / Doing / Done) et création de l'organigramme de l'équipe.</p>
                     <h3>Solution Technique</h3>
                     <p>
                         Une fois le cadre posé, nous avons développé une application de bureau (Desktop) en Java avec la librairie graphique JavaFX.
 
-    Interface Graphique (GUI) : Conception de maquettes ergonomiques (Wireframes) puis intégration en FXML/CSS pour offrir une visualisation claire du planning des réservations.
+                        Interface Graphique (GUI) : Conception de maquettes ergonomiques (Wireframes) puis intégration en FXML/CSS pour offrir une visualisation claire du planning des réservations.
 
-    Architecture : Mise en place du modèle MVC (Modèle-Vue-Contrôleur) pour séparer la logique métier (gestion des dates, conflits) de l'interface utilisateur.
+                        Architecture : Mise en place du modèle MVC (Modèle-Vue-Contrôleur) pour séparer la logique métier (gestion des dates, conflits) de l'interface utilisateur.
 
-    Fonctionnalités : Création, modification et suppression de réservations, vérification automatique de la disponibilité de la salle, calcul du prix total.
+                        Fonctionnalités : Création, modification et suppression de réservations, vérification automatique de la disponibilité de la salle, calcul du prix total.
                     </p>
 
-                    
                 </main>
 
                 <aside>
@@ -232,6 +269,11 @@ La particularité de ce projet résidait dans son approche : l'ingénierie du be
                         <h4 style="color:white; margin-bottom:15px;">Infos Projet</h4>
                         <a href="https://github.com/josepheslg/Portfolio/blob/main/projet_javaFX.java" class="btn btn-outline">Code Source</a>
                         
+                        <div class="relevance-box">
+                            <h5>🎯 Pourquoi ce projet ?</h5>
+                            <p>L'accent a été mis sur l'ingénierie du besoin (interview client) et la planification rigoureuse (Gantt), prouvant ma capacité à structurer un projet avant de coder.</p>
+                        </div>
+
                         <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
                         
                         <ul style="list-style: none; color: #888; font-size: 0.9rem;">
@@ -243,7 +285,8 @@ La particularité de ce projet résidait dans son approche : l'ingénierie du be
                 </aside>
             </div>
         </article>
-                <article class="project-block" id="projet-1">
+
+        <article class="project-block" id="projet-1">
             <div class="project-header">
                 <h2>Site web d'offre touristique</h2>
                 <div class="tags">
@@ -261,8 +304,8 @@ La particularité de ce projet résidait dans son approche : l'ingénierie du be
                     <p>
                         L'objectif était de concevoir et développer, en équipe de six personnes, une plateforme web complète de promotion d'activités touristiques en région PACA.
 
-La complexité du projet ne résidait pas seulement dans le code, mais dans le contexte : nous étions en simulation réelle d'entreprise. Nous devions partir d'une page blanche pour livrer un produit fini et fonctionnel, en gérant toutes les étapes du cycle de vie d'un projet web (Design, BDD, Back-end, Front-end, Déploiement).
-
+                        La complexité du projet ne résidait pas seulement dans le code, mais dans le contexte : nous étions en simulation réelle d'entreprise. Nous devions partir d'une page blanche pour livrer un produit fini et fonctionnel, en gérant toutes les étapes du cycle de vie d'un projet web (Design, BDD, Back-end, Front-end, Déploiement).
+                    </p>
                     
                     <div class="project-images">
                         <img src="image/image.webp" alt="image projet">
@@ -272,15 +315,15 @@ La complexité du projet ne résidait pas seulement dans le code, mais dans le c
 
                     <h3>Solution Technique</h3>
                     <p>
-Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigoureuse, pilotée par la méthode Agile Scrum.
+                        Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigoureuse, pilotée par la méthode Agile Scrum.
 
-    Gestion de projet (Mon rôle de Scrum Master) : J'ai mis en place l'organisation sur Jira pour découper le projet en Sprints. J'ai animé les rituels (Dailies, Retrospectives) pour fluidifier la communication, répartir la charge de travail et lever les bloquants techniques de mes collaborateurs.
+                        Gestion de projet (Mon rôle de Scrum Master) : J'ai mis en place l'organisation sur Jira pour découper le projet en Sprints. J'ai animé les rituels (Dailies, Retrospectives) pour fluidifier la communication, répartir la charge de travail et lever les bloquants techniques de mes collaborateurs.
 
-    Conception & Design : Nous avons réalisé des maquettes haute-fidélité sur Figma et conçu une base de données relationnelle complexe (MCD/MLD) pour gérer les utilisateurs, les professionnels et les annonces.
+                        Conception & Design : Nous avons réalisé des maquettes haute-fidélité sur Figma et conçu une base de données relationnelle complexe (MCD/MLD) pour gérer les utilisateurs, les professionnels et les annonces.
 
-    Développement : Nous avons bâti le site en PHP natif (sans framework) avec une architecture MVC (Modèle-Vue-Contrôleur) pour garantir un code propre et maintenable.
+                        Développement : Nous avons bâti le site en PHP natif (sans framework) avec une architecture MVC (Modèle-Vue-Contrôleur) pour garantir un code propre et maintenable.
 
-    Fonctionnalités livrées : Un Front-Office pour les visiteurs (recherche avancée, favoris, notation) et un Back-Office complet pour les professionnels (CRUD des annonces, gestion de profil).
+                        Fonctionnalités livrées : Un Front-Office pour les visiteurs (recherche avancée, favoris, notation) et un Back-Office complet pour les professionnels (CRUD des annonces, gestion de profil).
                     </p>
 
                     <div class="code-container">
@@ -301,6 +344,11 @@ Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigour
                         <a href="utiles/tregor.html" class="btn">Voir le Site</a>
                         <a href="https://github.com/tbtdbs2/Xx_TregorIndustries_xX/tree/develop/html" class="btn btn-outline">Code Source</a>
                         
+                        <div class="relevance-box">
+                            <h5>🎯 Pourquoi ce projet ?</h5>
+                            <p>En tant que Scrum Master, j'ai piloté l'organisation Agile (Jira, Sprints), assurant le respect de la méthodologie et la livraison des fonctionnalités dans les temps.</p>
+                        </div>
+
                         <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
                         
                         <ul style="list-style: none; color: #888; font-size: 0.9rem;">
@@ -312,8 +360,6 @@ Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigour
                 </aside>
             </div>
         </article>
-
-
 
     </div>
 

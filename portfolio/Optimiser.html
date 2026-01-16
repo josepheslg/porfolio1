@@ -44,7 +44,7 @@
 
         /* --- PAGE HERO (Titre de la section globale) --- */
         .page-hero {
-            height: 45vh; /* Légèrement agrandi pour accueillir le label */
+            height: 55vh; 
             background: linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,1)), url('https://via.placeholder.com/1200x600');
             background-size: cover;
             background-position: center;
@@ -158,6 +158,38 @@
         .btn-outline { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); }
         .btn-outline:hover { background: rgba(0, 210, 255, 0.1); }
 
+        /* --- AJOUTS CONTEXTE --- */
+        .competency-def {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 25px;
+            margin: 25px auto 0 auto;
+            max-width: 700px;
+            border-radius: 0 10px 10px 0;
+            text-align: left;
+            font-size: 1rem;
+            color: #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .relevance-box {
+            background: #252525;
+            border: 1px dashed var(--accent-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .relevance-box h5 {
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         /* --- MOBILE --- */
         @media (max-width: 900px) {
             .grid-layout { grid-template-columns: 1fr; }
@@ -180,11 +212,16 @@
         
         <h1>Mes Réalisations</h1>
         <p>Découvrez une sélection de mes projets techniques et créatifs.</p>
+
+        <div class="competency-def">
+            <strong>💡 En quoi consiste cette compétence ?</strong><br>
+            Elle vise à analyser et améliorer les performances d'une solution informatique (vitesse, mémoire, structure) en choisissant les structures de données et les algorithmes les plus adaptés.
+        </div>
     </header>
 
     <div class="container">
 
-                <article class="project-block" id="projet-1">
+        <article class="project-block" id="projet-1">
             <div class="project-header">
                 <h2>Problème des 8 Dames</h2>
                 <div class="tags">
@@ -196,11 +233,12 @@
                 <main>
                     <h3>🎯 Le Défi</h3>
                     <p>
-Dans le cadre de ma première année de BUT, notre groupe de trois étudiants a dû relever un défi algorithmique célèbre : le problème des 8 dames.
+                        Dans le cadre de ma première année de BUT, notre groupe de trois étudiants a dû relever un défi algorithmique célèbre : le problème des 8 dames.
 
-L'objectif était de concevoir un programme capable de placer 8 dames sur un échiquier de 8x8 cases sans qu'aucune ne puisse en attaquer une autre (c'est-à-dire qu'elles ne doivent partager ni la même ligne, ni la même colonne, ni la même diagonale).
+                        L'objectif était de concevoir un programme capable de placer 8 dames sur un échiquier de 8x8 cases sans qu'aucune ne puisse en attaquer une autre (c'est-à-dire qu'elles ne doivent partager ni la même ligne, ni la même colonne, ni la même diagonale).
 
-La difficulté majeure ne résidait pas seulement dans la recherche d'une solution unique, mais dans l'exigence de trouver l'intégralité des 92 solutions possibles et de proposer une restitution visuelle pour l'utilisateur.                    </p>
+                        La difficulté majeure ne résidait pas seulement dans la recherche d'une solution unique, mais dans l'exigence de trouver l'intégralité des 92 solutions possibles et de proposer une restitution visuelle pour l'utilisateur.
+                    </p>
                     
                     <div class="project-images">
                         <img src="image/Screenshot_2026-01-09_09-55-22.png"Interface 3D">
@@ -208,13 +246,13 @@ La difficulté majeure ne résidait pas seulement dans la recherche d'une soluti
 
                     <h3>Solution Technique</h3>
                     <p>
-Nous avons procédé par étapes pour structurer notre approche :
+                        Nous avons procédé par étapes pour structurer notre approche :
 
-    Modélisation Mathématique : Avant d'écrire la moindre ligne de code, nous avons analysé le problème pour définir les contraintes logiques (coordonnées x, y et calcul des diagonales) afin d'éliminer rapidement les positions invalides.
+                        Modélisation Mathématique : Avant d'écrire la moindre ligne de code, nous avons analysé le problème pour définir les contraintes logiques (coordonnées x, y et calcul des diagonales) afin d'éliminer rapidement les positions invalides.
 
-    Algorithme de Backtracking (Retour sur trace) : Nous avons développé un script Python utilisant la récursivité. L'algorithme place une dame, avance à la colonne suivante, et s'il se trouve bloqué, revient en arrière pour tester une autre position. C'est la méthode la plus efficace pour explorer l'arbre des possibilités.
+                        Algorithme de Backtracking (Retour sur trace) : Nous avons développé un script Python utilisant la récursivité. L'algorithme place une dame, avance à la colonne suivante, et s'il se trouve bloqué, revient en arrière pour tester une autre position. C'est la méthode la plus efficace pour explorer l'arbre des possibilités.
 
-    Affichage Graphique : Pour rendre le résultat intelligible, nous avons développé une interface graphique (GUI) permettant de dessiner l'échiquier et d'afficher dynamiquement les dames positionnées pour chacune des solutions trouvées.
+                        Affichage Graphique : Pour rendre le résultat intelligible, nous avons développé une interface graphique (GUI) permettant de dessiner l'échiquier et d'afficher dynamiquement les dames positionnées pour chacune des solutions trouvées.
                     </p>
 
                     <div class="code-container">
@@ -231,19 +269,23 @@ Nous avons procédé par étapes pour structurer notre approche :
                     <div class="sidebar-card">
                         <a href="https://github.com/josepheslg/Portfolio/blob/main/n_queens.py" class="btn btn-outline">Code Source</a>
                         
+                        <div class="relevance-box">
+                            <h5>🎯 Pourquoi ce projet ?</h5>
+                            <p>L'utilisation du Backtracking (récursivité) plutôt que la force brute montre ma capacité à sélectionner un algorithme complexe pour réduire drastiquement le temps de calcul.</p>
+                        </div>
+
                         <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
                         
                         <ul style="list-style: none; color: #888; font-size: 0.9rem;">
                             <li>📅 Année : 2024</li>
                             <li>⏱️ Durée : 1 mois</li>
-
                         </ul>
                     </div>
                 </aside>
             </div>
         </article>
 
-                <article class="project-block" id="projet-1">
+        <article class="project-block" id="projet-2">
             <div class="project-header">
                 <h2>Site web d'offre touristique</h2>
                 <div class="tags">
@@ -260,9 +302,8 @@ Nous avons procédé par étapes pour structurer notre approche :
                     <h3>🎯 Le Défi</h3>
                     <p>
                         L'objectif était de concevoir et développer, en équipe de six personnes, une plateforme web complète de promotion d'activités touristiques en région PACA.
-
-La complexité du projet ne résidait pas seulement dans le code, mais dans le contexte : nous étions en simulation réelle d'entreprise. Nous devions partir d'une page blanche pour livrer un produit fini et fonctionnel, en gérant toutes les étapes du cycle de vie d'un projet web (Design, BDD, Back-end, Front-end, Déploiement).
-
+                        La complexité du projet ne résidait pas seulement dans le code, mais dans le contexte : nous étions en simulation réelle d'entreprise. Nous devions partir d'une page blanche pour livrer un produit fini et fonctionnel, en gérant toutes les étapes du cycle de vie d'un projet web (Design, BDD, Back-end, Front-end, Déploiement).
+                    </p>
                     
                     <div class="project-images">
                         <img src="image/image.webp" alt="image projet">
@@ -272,15 +313,15 @@ La complexité du projet ne résidait pas seulement dans le code, mais dans le c
 
                     <h3>Solution Technique</h3>
                     <p>
-Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigoureuse, pilotée par la méthode Agile Scrum.
+                        Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigoureuse, pilotée par la méthode Agile Scrum.
 
-    Gestion de projet (Mon rôle de Scrum Master) : J'ai mis en place l'organisation sur Jira pour découper le projet en Sprints. J'ai animé les rituels (Dailies, Retrospectives) pour fluidifier la communication, répartir la charge de travail et lever les bloquants techniques de mes collaborateurs.
+                        Gestion de projet (Mon rôle de Scrum Master) : J'ai mis en place l'organisation sur Jira pour découper le projet en Sprints. J'ai animé les rituels (Dailies, Retrospectives) pour fluidifier la communication, répartir la charge de travail et lever les bloquants techniques de mes collaborateurs.
 
-    Conception & Design : Nous avons réalisé des maquettes haute-fidélité sur Figma et conçu une base de données relationnelle complexe (MCD/MLD) pour gérer les utilisateurs, les professionnels et les annonces.
+                        Conception & Design : Nous avons réalisé des maquettes haute-fidélité sur Figma et conçu une base de données relationnelle complexe (MCD/MLD) pour gérer les utilisateurs, les professionnels et les annonces.
 
-    Développement : Nous avons bâti le site en PHP natif (sans framework) avec une architecture MVC (Modèle-Vue-Contrôleur) pour garantir un code propre et maintenable.
+                        Développement : Nous avons bâti le site en PHP natif (sans framework) avec une architecture MVC (Modèle-Vue-Contrôleur) pour garantir un code propre et maintenable.
 
-    Fonctionnalités livrées : Un Front-Office pour les visiteurs (recherche avancée, favoris, notation) et un Back-Office complet pour les professionnels (CRUD des annonces, gestion de profil).
+                        Fonctionnalités livrées : Un Front-Office pour les visiteurs (recherche avancée, favoris, notation) et un Back-Office complet pour les professionnels (CRUD des annonces, gestion de profil).
                     </p>
 
                     <div class="code-container">
@@ -301,6 +342,11 @@ Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigour
                         <a href="utiles/tregor.html" class="btn">Voir le Site</a>
                         <a href="https://github.com/tbtdbs2/Xx_TregorIndustries_xX/tree/develop/html" class="btn btn-outline">Code Source</a>
                         
+                        <div class="relevance-box">
+                            <h5>🎯 Pourquoi ce projet ?</h5>
+                            <p>Le choix d'une architecture MVC et l'optimisation des requêtes SQL prouvent ma vigilance quant à la structure du code et à la performance des accès aux données.</p>
+                        </div>
+
                         <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
                         
                         <ul style="list-style: none; color: #888; font-size: 0.9rem;">
@@ -312,107 +358,6 @@ Pour répondre à ce besoin, nous avons adopté une approche "Full Stack" rigour
                 </aside>
             </div>
         </article>
-
-
-
-
-        <article class="project-block" id="projet-2">
-            <div class="project-header">
-                <h2>02. Dashboard Analytique</h2>
-                <div class="tags">
-                    <span class="tag">D3.js</span>
-                    <span class="tag">Vue.js</span>
-                    <span class="tag">API REST</span>
-                </div>
-            </div>
-
-            <div class="grid-layout">
-                <main>
-                    <h3>Le Défi</h3>
-                    <p>
-                        Concevoir un tableau de bord pour une entreprise de logistique, capable de traiter et visualiser 
-                        des milliers de points de données en temps réel pour le suivi de flotte.
-                    </p>
-                    
-                    <div class="project-images">
-                        <img src="https://via.placeholder.com/800x450/222/fff?text=Dashboard+Data" alt="Dashboard">
-                        <img src="https://via.placeholder.com/800x450/222/fff?text=Graphiques+Mobile" alt="Mobile View">
-                    </div>
-
-                    <h3>Solution Technique</h3>
-                    <p>
-                        Mise en place de WebSockets pour la mise à jour des données sans rechargement de page.
-                        L'interface est entièrement modulaire.
-                    </p>
-                </main>
-
-                <aside>
-                    <div class="sidebar-card">
-                        <h4 style="color:white; margin-bottom:15px;">Infos Projet</h4>
-                        <a href="#" class="btn">Voir la Démo</a>
-                        <a href="#" class="btn btn-outline">Étude de cas (PDF)</a>
-                        
-                        <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
-                        
-                        <ul style="list-style: none; color: #888; font-size: 0.9rem;">
-                            <li>📅 Année : 2023</li>
-                            <li>⏱️ Durée : 6 semaines</li>
-                            <li>👥 Rôle : Frontend Lead</li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
-        </article>
-
-        <article class="project-block" id="projet-3">
-            <div class="project-header">
-                <h2>03. Portfolio Architectural</h2>
-                <div class="tags">
-                    <span class="tag">HTML/SCSS</span>
-                    <span class="tag">GSAP</span>
-                    <span class="tag">UX Design</span>
-                </div>
-            </div>
-
-            <div class="grid-layout">
-                <main>
-                    <h3>Le Défi</h3>
-                    <p>
-                        Refonte complète de l'identité numérique d'un cabinet d'architectes. Le site devait être minimaliste,
-                        rapide et mettre en valeur la photographie haute résolution.
-                    </p>
-
-                    <h3>Détails d'animation</h3>
-                    <p>Utilisation de GSAP ScrollTrigger pour révéler les images au défilement.</p>
-                    
-                    <div class="code-container">
-<pre><code>// Animation au scroll
-gsap.from(".gallery-img", {
-    scrollTrigger: ".gallery",
-    y: 100,
-    opacity: 0,
-    duration: 1
-});</code></pre>
-                    </div>
-                </main>
-
-                <aside>
-                    <div class="sidebar-card">
-                        <h4 style="color:white; margin-bottom:15px;">Infos Projet</h4>
-                        <a href="#" class="btn">Visiter</a>
-                        
-                        <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
-                        
-                        <ul style="list-style: none; color: #888; font-size: 0.9rem;">
-                            <li>📅 Année : 2023</li>
-                            <li>⏱️ Durée : 1 mois</li>
-                            <li>👥 Rôle : UI Designer & Dev</li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
-        </article>
-
     </div>
 
     <footer style="text-align: center; padding: 50px; border-top: 1px solid #333; color: #666; margin-top: 50px;">
